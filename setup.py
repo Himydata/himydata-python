@@ -4,7 +4,7 @@ from setuptools import setup
 
 VERSION = "0.0.1"
 
-long_description = (open('README').read() +
+long_description = (open('README.md').read() +
     '\n\n' + open('HISTORY.txt').read())
 
 setup(
