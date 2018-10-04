@@ -8,7 +8,7 @@ long_description = (open('README.md').read() +
     '\n\n' + open('HISTORY.txt').read())
 
 setup(
-        name='dataiku-api-client',
+        name='himydata-library',
         version=VERSION,
         license="Apache Software License",
         packages=["himydata", "himydata.utils"],
