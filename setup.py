@@ -18,7 +18,7 @@ setup(
         author_email="support@himydata.com",
         url="https://www.himydata.com",
         classifiers = [
-            'Development Status :: 5 - Production/Stable',
+            'Development Status :: 0.1 - Production/Stable',
             'Intended Audience :: Developers',
             'License :: OSI Approved :: Apache Software License',
             'Topic :: Software Development :: Libraries',
@@ -27,7 +27,7 @@ setup(
         ],
         install_requires = [
             "requests>=2",
-            "python-dateutil"
-            ""
+            "python-dateutil",
+            "cassandra-driver"
         ]
      )
