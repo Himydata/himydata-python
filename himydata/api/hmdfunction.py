@@ -1,17 +1,16 @@
 import requests
 
-class Function(object):
+
+class API(object):
     """
     A dataset on the HMD instance
     """
 
-
-    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/functions/manage"):
+    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/v1/function"):
         self.serviceUrl = serviceUrl
         self.apiToken = apiToken
 
-
-    def functionGet(self, name, data=None):
+    def get(self, name, data=None):
         '''
         :type name : name of the function
         
@@ -23,7 +22,7 @@ class Function(object):
         response = requests.get(url, data=data, headers=self._getDefaultHeaders())
         return response
 
-    def functionUpdate(self, name, content):
+    def update(self, name, content):
         '''
         :type name : name of the function
         :type content : formated text with new code for function
@@ -39,7 +38,7 @@ class Function(object):
         response = requests.put(url, data=req_data, headers=self._getDefaultHeaders())
         return response
 
-    def functionCall(self, name, data=None):
+    def call(self, name, data=None):
         '''
         :type name : name of the function
         :type data : json data to pass on to the function when doing the call
@@ -51,7 +50,7 @@ class Function(object):
         response = requests.post(url, data=data, headers=self._getDefaultHeaders())
         return response
 
-    def functionStatus(self, name, data=None):
+    def status(self, name, data=None):
         '''
         :type name : name of the function
         
@@ -63,7 +62,7 @@ class Function(object):
         response = requests.post(url, data=data, headers=self._getDefaultHeaders())
         return response
 
-    def functionLogs(self, name, data=None):
+    def logs(self, name, data=None):
         '''
         :type name : name of the function
         
@@ -79,4 +78,4 @@ class Function(object):
         return {
             "accept": "application/json",
             "authorization": "Token " + self.apiToken
-    }
+        }

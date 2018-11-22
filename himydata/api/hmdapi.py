@@ -1,17 +1,16 @@
 import requests
 
-class ApiReference(object):
+
+class API(object):
     """
     An api on the HMD instance
     """
 
-
-    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/gateway/api/manage"):
+    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/v1/gateway"):
         self.serviceUrl = serviceUrl
         self.apiToken = apiToken
 
-
-    def apiReferenceGet(self, name, data=None):
+    def get(self, name, data=None):
         '''
         :type name : name of the apiReference
         
@@ -23,7 +22,7 @@ class ApiReference(object):
         response = requests.get(url, data=data, headers=self._getDefaultHeaders())
         return response
 
-    def apiReferenceCall(self, name, data=None):
+    def call(self, name, data=None):
         '''
         :type name : name of the apiReference
         :type data : json data to pass on to the apiReference when doing the call
@@ -80,4 +79,4 @@ class ApiReference(object):
         return {
             "accept": "application/json",
             "authorization": "Token " + self.apiToken
-    }
+        }

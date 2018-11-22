@@ -1,26 +1,24 @@
 import requests
 
-class dataset(object):
+
+class API(object):
     """
     A dataset on the HMD instance
     """
 
-
-    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/gateway/api/manage"):
+    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/v1/dataset"):
         self.serviceUrl = serviceUrl
         self.apiToken = apiToken
 
-
-    def datasetGet(self, name, data=None):
+    def get(self, name, data=None):
         '''
         :type name : name of the dataset
         
         :rtype json
         '''
-
         url = self.serviceUrl + ("/%s/"% name)
 
-        response = requests.get(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.get(url, data=data, headers=self._getDefaultHeaders() )
         return response
 
     # todo opn back
@@ -38,7 +36,7 @@ class dataset(object):
 
 
     # todo on back
-    def datasetUpdate(self, name, content):
+    def update(self, name, content):
         '''
         :type name : name of the dataset
         :type content : formated text with new code for dataset
@@ -54,7 +52,7 @@ class dataset(object):
         response = requests.put(url, data=req_data, headers=self._getDefaultHeaders())
         return response
 
-    def datasetStatus(self, name, data=None):
+    def status(self, name, data=None):
         '''
         :type name : name of the dataset
         
@@ -66,7 +64,7 @@ class dataset(object):
         response = requests.post(url, data=data, headers=self._getDefaultHeaders())
         return response
 
-    def datasetLogs(self, name, data=None):
+    def logs(self, name, data=None):
         '''
         :type name : name of the dataset
         
@@ -82,4 +80,4 @@ class dataset(object):
         return {
             "accept": "application/json",
             "authorization": "Token " + self.apiToken
-    }
+        }
