@@ -26,10 +26,9 @@ setup(
             'Operating System :: OS Independent'
         ],
         install_requires = [
-            "requests>=2.19.1",
+            "requests",
             "python-dateutil",
-            "cassandra-driver>=3.13.0",
-            "numpy",
+            "cassandra-driver",
             "SQLAlchemy"
         ]
      )
