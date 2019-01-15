@@ -1,7 +1,7 @@
 import requests
-import time
 
-from himydata.api import hmdfunction, hmdapi, hmddataset
+from himydata.hmd.api import hmdfunction, hmddataset
+from himydata.hmd.api import hmdapi
 
 # inspired from https://github.com/gophish/api-client-python/blob/master/gophish/client.py
 

@@ -1,4 +1,4 @@
-from himydata.models import Error
+from himydata.hmd.models import Error
 '''
 api.py
 
