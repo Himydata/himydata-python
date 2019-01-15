@@ -16,16 +16,38 @@ class API(object):
         
         :rtype json
         '''
-        url = self.serviceUrl + ("/%s/"% name)
+        url = self.serviceUrl + ("/%s/" % name)
 
-        response = requests.get(url, data=data, headers=self._getDefaultHeaders() )
+        response = requests.get(url, data=data, headers=self._getDefaultHeaders())
+        return response
+
+    def insert(self, name, data=None):
+        '''
+        :type name : name of the dataset
+
+        :rtype json
+        '''
+        url = self.serviceUrl + ("/%s/" % name)
+
+        response = requests.put(url, data=data, headers=self._getDefaultHeaders())
+        return response
+
+    def update(self, name, data):
+        '''
+        :type name : name of the dataset
+
+        :rtype json
+        '''
+        url = self.serviceUrl + ("/%s/" % name)
+
+        response = requests.post(url, data=data, headers=self._getDefaultHeaders())
         return response
 
     # todo opn back
     # def datasetSchema(self, name, data=None):
     #     '''
     #     :type name : name of the dataset
-        
+
     #     :rtype json
     #     '''
 
@@ -35,22 +57,8 @@ class API(object):
     #     return response
 
 
-    # todo on back
-    def update(self, name, content):
-        '''
-        :type name : name of the dataset
-        :type content : formated text with new code for dataset
-        
-        :rtype json
-        '''
+    # todo  all following on back
 
-        req_data = {'name': name,
-                    'content': content}
-
-        url = self.serviceUrl + ("/%s/"% name)
-
-        response = requests.put(url, data=req_data, headers=self._getDefaultHeaders())
-        return response
 
     def status(self, name, data=None):
         '''

@@ -1,1 +1,1 @@
-from .client import Hmd
+from himydata import hmd_client
