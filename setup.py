@@ -30,7 +30,6 @@ setup(
             "python-dateutil",
             "cassandra-driver>=3.13.0",
             "numpy",
-            "pandas",
             "SQLAlchemy"
         ]
      )
