@@ -1,1 +1,1 @@
-from .api import APIEndpoint
+from himydata.hmd.api.api import APIEndpoint
