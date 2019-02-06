@@ -47,12 +47,14 @@ class Dashboard(object):
             return "Not currently supporting graph creation from more than two columns. Please rewrite your query."
         return graph_json
 
-    def add_table(self, table_name):
-        self.graphs[table_name] = {}
+    def add_dataset(self, name):
+        """adds a table to the dashboard"""
+        self.graphs[name] = {}
 
-    def add_graph_to_table(self, graph, table_name):
+    def add_graph_to_dataset(self, graph, dataset_name):
+        """ add a graph as a sub-section of a dataset"""
         n = str(self.default_name + self.default_name)
-        self.graphs[table_name].update({n: graph})
+        self.graphs[dataset_name].update({n: graph})
 
     def ready(self):
         """return the graph dictionary as a json string """

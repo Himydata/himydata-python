@@ -15,6 +15,9 @@ class Dataset(object):
         self.hmd_dataset = hmd_dataset
         self.name = name
 
+        self.conf = eval(self.__get_config())
+        self.engine = sa.create_engine(self.conf['config'])
+
     def set_name(self, name):
         """
         :param name: dataset name
@@ -30,55 +33,43 @@ class Dataset(object):
         :param name: dataset name
         :return: pandas dataframe
         """
-        conf = eval(self.__get_config())
-        engine = sa.create_engine(conf['config'])
-
-        if not engine.has_table(conf['name']):
+        if not self.engine.has_table(self.conf['name']):
             return None
 
-        return pd.read_sql("SELECT * FROM %s" % conf['name'], engine)
+        return pd.read_sql("SELECT * FROM %s" % self.conf['name'], self.engine)
 
     def get_dataset_sql_engine(self):
         """
         :param name: dataset name
         :return: SQLAlchemy engine
         """
-        conf = eval(self.__get_config())
-        engine = sa.create_engine(conf['config'])
-
-        if not engine.has_table(conf['name']):
+        if not self.engine.has_table(self.conf['name']):
             return None
 
-        return engine
+        return self.engine
 
     def get_dataset_table(self):
         """
         :param name: dataset name
         :return: SQLAlchemy table object
         """
-        conf = eval(self.__get_config())
-        engine = sa.create_engine(conf['config'])
-
-        if not engine.has_table(conf['name']):
+        if not self.engine.has_table(self.conf['name']):
             return None
 
         metadata = sa.MetaData()
-        tabel = sa.Table(conf['name'], metadata, autoload=True, autoload_with=engine)
+        tabel = sa.Table(self.conf['name'], metadata, autoload=True, autoload_with=self.engine)
 
         return tabel
 
     def query_as_list(self, query):
         """
-        :param name: dataset name
+        :param query: SqlAlchemy query
         :return: list with results
         """
-        conf = eval(self.__get_config())
-        engine = sa.create_engine(conf['config'])
-
-        if not engine.has_table(conf['name']):
+        if not self.engine.has_table(self.conf['name']):
             return None
 
-        connection = engine.connect()
+        connection = self.engine.connect()
         ResultProxy = connection.execute(query)
         ResultSet = ResultProxy.fetchall()
         ResultProxy.close()
@@ -87,12 +78,9 @@ class Dataset(object):
     def query_as_dataframe(self, query):
         """
         :param query: SqlAlchemy query
-        :return: list with results
+        :return: pandas dataframe with query results
         """
-        conf = eval(self.__get_config())
-        engine = sa.create_engine(conf['config'])
-
-        if not engine.has_table(conf['name']):
+        if not self.engine.has_table(self.conf['name']):
             return None
 
-        return pd.read_sql_query(query, engine)
+        return pd.read_sql_query(query, self.engine)
