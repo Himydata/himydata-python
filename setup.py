@@ -11,7 +11,7 @@ setup(
         name='himydata-library',
         version=VERSION,
         license="Apache Software License",
-        packages=["himydata", "himydata.utils", "himydata.hmd", "himydata.hmd.api"],
+        packages=["himydata", "himydata.utils", "himydata.hmd", "himydata.hmd.api", "himydata.hmd.utils"],
         description="Python library for Himydata Platform",
         long_description=long_description,
         author="Himydata",
