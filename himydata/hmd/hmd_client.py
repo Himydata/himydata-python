@@ -5,10 +5,9 @@ from himydata.hmd.api import hmdapi
 
 # inspired from https://github.com/gophish/api-client-python/blob/master/gophish/client.py
 
-serviceUrl = "http://api.himydata.com/v1/"
-
 
 class HmdClient(object):
+    serviceUrl = "http://api.himydata.com/v1/"
     """ A standard HTTP REST client used by Gophish """
     apiToken = None
 
@@ -28,6 +27,7 @@ class HmdClient(object):
 
 
 class Hmd(object):
+    serviceUrl = "http://api.himydata.com/v1/"
     """
     Ensure connection to Himydata
     """

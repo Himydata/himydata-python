@@ -29,10 +29,13 @@ setup(
             "requests>=2.19.1",
             "python-dateutil>=2.7.5",
             "cassandra-driver>=3.13.0",
-            "pandas>=0.23.3",
             "numpy>=1.15.3",
+            "pandas>=0.22.0",
             "SQLAlchemy>=1.2.15",
             "psycopg2>=2.7.5",
             "psycopg2-binary>=2.7.5"
         ]
      )
+
+# RUN pip install cassandra-driver SQLAlchemy requests psycopg2-binary
+# RUN pip install pandas==0.22.0

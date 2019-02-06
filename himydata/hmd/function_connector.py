@@ -3,10 +3,11 @@ from himydata.hmd.api import hmdfunction, hmddataset
 from himydata.hmd.utils import datasets, dashboards
 from himydata.hmd.api import hmdapi
 from himydata.hmd.hmd_client import HmdClient
-serviceUrl = "http://localhost:8002/v1/"
+# serviceUrl = "http://localhost:8002/v1/"
 
 
 class Connector(object):
+	serviceUrl = "http://api.himydata.com/v1/"
 	"""
 	Connection done through a function. Certain fields are already forseen
 	"""
