@@ -25,10 +25,14 @@ setup(
             'Programming Language :: Python',
             'Operating System :: OS Independent'
         ],
-        install_requires = [
-            "requests",
-            "python-dateutil",
-            "cassandra-driver",
-            "SQLAlchemy"
+        install_requires=[
+            "requests>=2.19.1",
+            "python-dateutil>=2.7.5",
+            "cassandra-driver>=3.13.0",
+            "pandas>=0.23.3",
+            "numpy>=1.15.3",
+            "SQLAlchemy>=1.2.15",
+            "psycopg2>=2.7.5",
+            "psycopg2-binary>=2.7.5"
         ]
      )
