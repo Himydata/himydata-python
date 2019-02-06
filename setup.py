@@ -29,7 +29,7 @@ setup(
             "requests>=2.19.1",
             "python-dateutil>=2.7.5",
             "cassandra-driver>=3.13.0",
-            "pandas>=0.23.3",
+            "pandas>=0.22.0",
             "numpy>=1.15.3",
             "SQLAlchemy>=1.2.15",
             "psycopg2>=2.7.5",
