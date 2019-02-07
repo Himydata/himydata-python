@@ -31,7 +31,7 @@ setup(
             "cassandra-driver>=3.13.0",
             "numpy>=1.15.3",
             "pandas>=0.22.0",
-            "SQLAlchemy>=1.2.15",
+            "sqlalchemy>=1.2.15",
             "psycopg2>=2.7.5",
             "psycopg2-binary>=2.7.5"
         ]
