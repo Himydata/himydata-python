@@ -1,5 +1,6 @@
 import json
 
+
 class Dashboard(object):
     def __init__(self):
         self.graphs = {}

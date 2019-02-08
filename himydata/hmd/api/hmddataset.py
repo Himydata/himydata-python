@@ -6,9 +6,9 @@ class API(object):
     A dataset on the HMD instance
     """
 
-    def __init__(self, apiToken, serviceUrl="http://api.himydata.com/v1/dataset"):
-        self.serviceUrl = serviceUrl
-        self.apiToken = apiToken
+    def __init__(self, api_token, service_url="http://api.himydata.com/v1/dataset"):
+        self.service_url = service_url
+        self.api_token = api_token
 
     def get(self, name, data=None):
         """
@@ -18,9 +18,9 @@ class API(object):
         :param data:
         :return: http response
         """
-        url = self.serviceUrl + ("/%s/" % name)
+        url = self.service_url + ("/%s/" % name)
 
-        response = requests.get(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.get(url, data=data, headers=self.__get_default_headers())
         return response
 
     def insert(self, name, data=None):
@@ -30,9 +30,9 @@ class API(object):
         :param data:
         :return: http response
         """
-        url = self.serviceUrl + ("/%s/" % name)
+        url = self.service_url + ("/%s/" % name)
 
-        response = requests.put(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.put(url, data=data, headers=self.__get_default_headers())
         return response
 
     def update(self, name, data):
@@ -42,9 +42,9 @@ class API(object):
         :param data:
         :return: http response
         """
-        url = self.serviceUrl + ("/%s/" % name)
+        url = self.service_url + ("/%s/" % name)
 
-        response = requests.post(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.post(url, data=data, headers=self.__get_default_headers())
         return response
 
     # todo opn back
@@ -55,7 +55,7 @@ class API(object):
     #     :rtype json
     #     '''
 
-    #     url = self.serviceUrl + ("/%s/"% name)
+    #     url = self.service_url + ("/%s/"% name)
 
     #     response = requests.get(url, data=data, headers=self._getDefaultHeaders())
     #     return response
@@ -67,9 +67,9 @@ class API(object):
         :param name:
         :return: json type
         """
-        url = self.serviceUrl + ("/%s/checkConfig/" % name)
+        url = self.service_url + ("/%s/checkConfig/" % name)
 
-        response = requests.get(url, headers=self._getDefaultHeaders())
+        response = requests.get(url, headers=self.__get_default_headers())
         return response.json()
 
     def status(self, name, data=None):
@@ -80,9 +80,9 @@ class API(object):
         :return: str
         """
 
-        url = self.serviceUrl + ("/%s/status/"% name)
+        url = self.service_url + ("/%s/status/" % name)
 
-        response = requests.post(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.post(url, data=data, headers=self.__get_default_headers())
         return response
 
     def logs(self, name, data=None):
@@ -92,17 +92,17 @@ class API(object):
         :param data:
         :return: str
         """
-        url = self.serviceUrl + ("/%s/debug/"% name)
+        url = self.service_url + ("/%s/debug/" % name)
 
-        response = requests.post(url, data=data, headers=self._getDefaultHeaders())
+        response = requests.post(url, data=data, headers=self.__get_default_headers())
         return response
 
-    def _getDefaultHeaders(self):
+    def __get_default_headers(self):
         """
 
         :return: json type
         """
         return {
             "accept": "application/json",
-            "authorization": "Token " + self.apiToken
+            "authorization": "Token " + self.api_token
         }

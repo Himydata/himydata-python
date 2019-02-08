@@ -1,6 +1,7 @@
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 
+
 class Dataset(object):
     """
     A dataset on the HMD instance
@@ -16,21 +17,21 @@ class Dataset(object):
         if user:
             auth_provider = PlainTextAuthProvider(
                 username='', password='')
-        
+
         self.cluster = Cluster(datastore_settings['IPs'], auth_provider=auth_provider)
         self.session = self.cluster.connect(datastore_settings['keyspace'])
 
     ####################
     # Dataset metadata #
     ####################
-    def get_schema(self):
-        """
-        Get the schema of the dataset
-
-        Returns:
-            a JSON object of the schema, with the list of columns
-        """
-        return (self.project_key, self.dataset_name)
+    # def get_schema(self):
+    #     """
+    #     Get the schema of the dataset
+    #
+    #     Returns:
+    #         a JSON object of the schema, with the list of columns
+    #     """
+    #     return (self.project_key, self.dataset_name)
 
     def execute(self, query):
         """
@@ -41,7 +42,6 @@ class Dataset(object):
         """
         rows = self.session.execute(query)
         return rows
-
 
     def get_rows(self, dataset_name, heads=None, limit=None):
         """
@@ -57,7 +57,7 @@ class Dataset(object):
         """
         # rows={"titi": "toto"}
 
-         
+
         if heads:
             query ='SELECT %s FROM %s' % (str(heads), dataset_name)
         else:
@@ -75,7 +75,7 @@ class Dataset(object):
     #     """
     #     Get rows from dataset where head = value
     #     Heads refers to the columns filtered, if None mentioned, shows all
-    
+
     #     dataset_name : tha name of the dataset in question
     #     heads : list with columns of interest
     #     limit : limit the number of rows retrieved

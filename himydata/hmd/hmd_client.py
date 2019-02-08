@@ -1,18 +1,21 @@
 import requests
 
-from himydata.hmd.api import hmdfunction, hmddataset
 from himydata.hmd.api import hmdapi
+from himydata.hmd.api import hmdfunction, hmddataset
+
 
 # inspired from https://github.com/gophish/api-client-python/blob/master/gophish/client.py
 
 
 class HmdClient(object):
-    serviceUrl = "http://api.himydata.com/v1/"
     """ A standard HTTP REST client used by Gophish """
-    apiToken = None
+    api_token = None
 
-    def __init__(self, apiToken, host=serviceUrl, **kwargs):
-        self.apiToken = apiToken
+    def __init__(self,
+                 api_token,
+                 host="http://api.himydata.com/v1/",
+                 **kwargs):
+        self.api_token = api_token
         self.host = host
         self._client_kwargs = kwargs
 
@@ -22,52 +25,20 @@ class HmdClient(object):
         url = "{}{}".format(self.host, path)
         kwargs.update(self._client_kwargs)
         response = requests.request(
-            method, url, params={"apiToken": self.apiToken}, **kwargs)
+            method, url, params={"api_token": self.api_token}, **kwargs)
         return response
 
 
 class Hmd(object):
-    serviceUrl = "http://api.himydata.com/v1/"
     """
     Ensure connection to Himydata
     """
     def __init__(self,
-        apiToken,
-        host=serviceUrl,
-        client=HmdClient,
-        **kwargs):
-        self.client = client(apiToken, host=host, **kwargs)
-        self.datasets = hmddataset.API(apiToken)
-        self.apis = hmdapi.API(apiToken)
-        self.functions = hmdfunction.API(apiToken)
-
-
-    # apiKey = None
-    # statusPollDelay = 0.5
-
-    # def set_apiToken(self, apiKey):
-    #   self.apiKey = apiKey
-
-    # def set_service_url(self, serviceUrl):
-    #   self.serviceUrl = serviceUrl
-
-    # def _url(path):
-    #     return serviceUrl + path
-
-    # def run(self):
-    #   dataset = hmddataset(self.apiKey, serviceUrl=self.serviceUrl)
-    #   api_ref = hmdapi(self.apiKey, serviceUrl=self.serviceUrl)
-    #   function = hmdfunction(self.apiKey, serviceUrl=self.serviceUrl)
-
-
-    # def _wait_for_job_finish(self, consumer, createJobResponse):
-    #     while True:
-    #         statusResult = consumer.jobStatus(createJobResponse.jobId)
-
-    #         # from JobStatus.cs
-    #         finalStates = [201, 202, 203]
-
-    #         for finalState in finalStates:
-    #             if finalState == statusResult.jobStatus:
-    #                 return statusResult
-    #       time.sleep(self.statusPollDelay)
+                 api_token,
+                 host="http://api.himydata.com/v1/",
+                 client=HmdClient,
+                 **kwargs):
+        self.client = client(api_token, host=host, **kwargs)
+        self.datasets = hmddataset.API(api_token)
+        self.apis = hmdapi.API(api_token)
+        self.functions = hmdfunction.API(api_token)

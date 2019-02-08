@@ -1,11 +1,8 @@
-import requests
 import sqlalchemy as sa
-from himydata.hmd.api import hmddataset
 import pandas as pd
 
-class Dataset(object):
 
-    # name = None
+class Dataset(object):
 
     def __init__(self, hmd_dataset, name):
         """
@@ -30,7 +27,6 @@ class Dataset(object):
 
     def get_dataset_as_dataframe(self):
         """
-        :param name: dataset name
         :return: pandas dataframe
         """
         if not self.engine.has_table(self.conf['name']):
@@ -40,7 +36,6 @@ class Dataset(object):
 
     def get_dataset_sql_engine(self):
         """
-        :param name: dataset name
         :return: SQLAlchemy engine
         """
         if not self.engine.has_table(self.conf['name']):
@@ -50,7 +45,6 @@ class Dataset(object):
 
     def get_dataset_table(self):
         """
-        :param name: dataset name
         :return: SQLAlchemy table object
         """
         if not self.engine.has_table(self.conf['name']):
@@ -70,10 +64,10 @@ class Dataset(object):
             return None
 
         connection = self.engine.connect()
-        ResultProxy = connection.execute(query)
-        ResultSet = ResultProxy.fetchall()
-        ResultProxy.close()
-        return ResultSet
+        result_proxy = connection.execute(query)
+        result_set = result_proxy.fetchall()
+        result_proxy.close()
+        return result_set
 
     def query_as_dataframe(self, query):
         """
