@@ -4,7 +4,6 @@ import json
 class Dashboard(object):
     def __init__(self):
         self.graphs = {}
-        self.default_name = "a"
 
     def make_graph(self, dataframe, graph_type, name=None):
         """
@@ -52,10 +51,11 @@ class Dashboard(object):
         """adds a table to the dashboard"""
         self.graphs[name] = {}
 
-    def add_graph_to_dataset(self, graph, dataset_name):
+    def add_graph_to_dataset(self, graph, dataset_name, graph_name=None):
         """ add a graph as a sub-section of a dataset"""
-        n = str(self.default_name + self.default_name)
-        self.graphs[dataset_name].update({n: graph})
+        if not graph_name : 
+            graph_name = graph["name"]
+        self.graphs[dataset_name].update({graph_name: graph})
 
     def ready(self):
         """return the graph dictionary as a json string """
