@@ -1,7 +1,7 @@
 from himydata.hmd.api import hmdapi
 from himydata.hmd.api import hmdfunction, hmddataset
 from himydata.hmd.hmd_client import HmdClient
-from himydata.hmd.utils import datasets, dashboards
+from himydata.hmd.utils import datasets, datastores, dashboards
 
 
 class Connector(object):
@@ -28,6 +28,15 @@ class Connector(object):
 		"""
 		dataset = datasets.Dataset(self.hmd_dataset, name)
 		return dataset
+
+	def datastore(self, dataset_name):
+		"""
+
+		:param dataset_name: the name of a dataset with interest to
+		:return: connection to the datastore holding the initial dataset
+		"""
+		datastore = datastores.Datastore(self.hmd_dataset, dataset_name)
+		return datastore
 
 	def dashboard(self):
 		"""

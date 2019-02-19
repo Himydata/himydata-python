@@ -1,5 +1,6 @@
 import sqlalchemy as sa
 import pandas as pd
+from himydata.hmd.utils.datastores import Datastore
 
 
 class Dataset(object):
@@ -24,6 +25,15 @@ class Dataset(object):
     def __get_config(self):
         """private class, used to return the config necessary to make a direct sqlAlchemy connection to the database"""
         return self.hmd_dataset.get_config(self.name)
+
+    def get_dataset_sql_name(self):
+        """
+        :return: dataset name as stored in database
+        """
+        if not self.engine.has_table(self.conf['name']):
+            return None
+
+        return self.conf['name']
 
     def get_dataset_as_dataframe(self):
         """
@@ -78,3 +88,7 @@ class Dataset(object):
             return None
 
         return pd.read_sql_query(query, self.engine)
+
+    def get_datastore(self):
+        datastore = Datastore(self.hmd_dataset, self.name)
+        return datastore
