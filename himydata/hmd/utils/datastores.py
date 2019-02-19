@@ -13,7 +13,7 @@ class Datastore(object):
         """private class, used to return the config necessary to make a direct sqlAlchemy connection to the database"""
         return self.hmd_dataset.get_config(dataset_name)
 
-    def get_datastore_sql_engine(self):
+    def get_sql_engine(self):
         """
         :return: SQLAlchemy engine
         """

@@ -65,7 +65,7 @@ class Dataset(object):
 
         return tabel
 
-    def query_as_list(self, query):
+    def get_query_as_list(self, query):
         """
         :param query: SqlAlchemy query
         :return: list with results
@@ -79,7 +79,7 @@ class Dataset(object):
         result_proxy.close()
         return result_set
 
-    def query_as_dataframe(self, query):
+    def get_query_as_dataframe(self, query):
         """
         :param query: SqlAlchemy query
         :return: pandas dataframe with query results
