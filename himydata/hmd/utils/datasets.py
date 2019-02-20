@@ -44,7 +44,7 @@ class Dataset(object):
 
         return pd.read_sql("SELECT * FROM %s" % self.conf['name'], self.engine)
 
-    def get_dataset_sql_engine(self):
+    def get_engine(self):
         """
         :return: SQLAlchemy engine
         """
@@ -61,9 +61,9 @@ class Dataset(object):
             return None
 
         metadata = sa.MetaData()
-        tabel = sa.Table(self.conf['name'], metadata, autoload=True, autoload_with=self.engine)
+        sql_tabel = sa.Table(self.conf['name'], metadata, autoload=True, autoload_with=self.engine)
 
-        return tabel
+        return sql_tabel
 
     def get_query_as_list(self, query):
         """

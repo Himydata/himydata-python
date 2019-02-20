@@ -44,18 +44,19 @@ class Dashboard(object):
                 graph_json["name"] = '%s' % c1
 
         else:
-            return "Not currently supporting graph creation from more than two columns. Please rewrite your query."
+            return {"error": "Not currently supporting graph creation from more than two columns. "
+                             "Please rewrite your query."}
         return graph_json
 
-    def add_dataset(self, name):
-        """adds a table to the dashboard"""
+    def add_section(self, name):
+        """adds a section to the dashboard"""
         self.graphs[name] = {}
 
-    def add_graph_to_dataset(self, graph, dataset_name, graph_name=None):
+    def add_graph_to_section(self, graph, section, graph_name=None):
         """ add a graph as a sub-section of a dataset"""
-        if not graph_name : 
+        if not graph_name:
             graph_name = graph["name"]
-        self.graphs[dataset_name].update({graph_name: graph})
+        self.graphs[section].update({graph_name: graph})
 
     def ready(self):
         """return the graph dictionary as a json string """
