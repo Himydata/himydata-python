@@ -70,6 +70,8 @@ class API(object):
         url = self.service_url + ("/%s/checkConfig/" % name)
 
         response = requests.get(url, headers=self.__get_default_headers())
+        if response.status_code != 200:
+            raise Exception("HTTP Exception {} : {}".format(response.status_code, response.text))
         return response.json()
 
     def status(self, name, data=None):
